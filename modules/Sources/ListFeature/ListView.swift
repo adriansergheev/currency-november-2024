@@ -11,12 +11,13 @@ import ApiClient
 public class ListModel {
   @CasePathable
   @dynamicMemberLookup
-  enum Destination {
+  public enum Destination {
     case status(StatusModel)
   }
 
   var destination: Destination?
   var currencies = [CryptoCurrency]()
+  var error: Error?
 
   enum Currency: String, CaseIterable, Identifiable {
     var id: String { rawValue }
@@ -30,7 +31,9 @@ public class ListModel {
   @ObservationIgnored
   @Dependency(\.continuousClock) var clock
 
-  public init() {}
+  public init(destination: Destination? = nil) {
+    self.destination = destination
+  }
 
   // fetching the currencies concurrently results in:
 
@@ -60,6 +63,7 @@ public class ListModel {
   }
 
   func fetchCurrencies() async {
+    self.error = error
     self.currencies = []
 
     var symbols: [Symbol]
@@ -75,7 +79,7 @@ public class ListModel {
         try await clock.sleep(for: .seconds(1))
       }
     } catch {
-      // TODO: Handle error
+      self.error = error
     }
   }
 
@@ -105,28 +109,38 @@ public struct ListView: View {
   }
 
   public var body: some View {
-    List {
-      ForEach(self.model.currencies) { currency in
+    Group {
+      if let _ = self.model.error {
         Button {
-          self.model.currencyRowTapped(currency)
+          Task { await self.model.fetchCurrencies() }
         } label: {
-          HStack {
-            Text("💰 \(currency.symbol.uppercased())")
-              .font(.headline)
-              .foregroundColor(.primary)
+          Text("Retry")
+        }
+      } else {
+        List {
+          ForEach(self.model.currencies) { currency in
+            Button {
+              self.model.currencyRowTapped(currency)
+            } label: {
+              HStack {
+                Text("💰 \(currency.symbol.uppercased())")
+                  .foregroundColor(.primary)
+                  .font(.headline)
 
-            Spacer()
+                Spacer()
 
-            VStack(alignment: .trailing) {
-              Text("Last: \(currency.lastPrice.formatted(.currency(code: self.model.currency.rawValue)))")
-                .font(.subheadline)
-                .foregroundColor(currency.lastPrice >= currency.openPrice ? .green : .red)
-              Text("High: \(currency.highPrice.formatted(.currency(code: self.model.currency.rawValue)))")
-                .font(.caption)
-                .foregroundColor(.secondary)
+                VStack(alignment: .trailing) {
+                  Text("Last: \(currency.lastPrice.formatted(.currency(code: self.model.currency.rawValue)))")
+                    .font(.subheadline)
+                    .foregroundColor(currency.lastPrice >= currency.openPrice ? .green : .red)
+                  Text("High: \(currency.highPrice.formatted(.currency(code: self.model.currency.rawValue)))")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                }
+              }
+              .padding(.vertical, .grid(1))
             }
           }
-          .padding(.vertical, .grid(1))
         }
       }
     }

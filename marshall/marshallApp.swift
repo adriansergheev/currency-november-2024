@@ -12,6 +12,16 @@ struct marshallApp: App {
       } operation: {
         NavigationStack {
           ListView(model: .init())
+
+          // deep link to status
+
+          //          ListView(
+          //            model: .init(
+          //              destination: .status(
+          //                .init()
+          //              )
+          //            )
+          //          )
         }
       }
     }
