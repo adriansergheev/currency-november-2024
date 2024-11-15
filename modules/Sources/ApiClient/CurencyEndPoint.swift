@@ -5,10 +5,14 @@ public enum WazirxCurrencyEndpoint: Sendable {
   case fetch(Symbol)
 }
 
-public enum Symbol: String, Sendable, CaseIterable {
+public enum Symbol: String, Sendable {
+  case btcusdt
+  case ethusdt
+  case ltcusdt
+
   case btcinr
+  case ltcinr
   case dogeinr
-  case ethbtc
 }
 
 extension WazirxCurrencyEndpoint: APIEndpoint {

@@ -83,4 +83,3 @@ public struct CryptoCurrency: Decodable, Hashable, Identifiable, Sendable {
   }
 
 }
-

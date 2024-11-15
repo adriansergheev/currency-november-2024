@@ -42,7 +42,7 @@ let package = Package(
         "Styleguide",
         "StatusFeature",
         .product(name: "Dependencies", package: "swift-dependencies"),
-        .product(name: "SwiftUINavigation", package: "swift-navigation"),
+        .product(name: "SwiftUINavigation", package: "swift-navigation")
         //        .product(name: "IdentifiedCollections", package: "swift-identified-collections")
       ]
     ),
@@ -65,6 +65,6 @@ let package = Package(
     .testTarget(
       name: "StatusFeatureTests",
       dependencies: ["StatusFeature"]
-    ),
+    )
   ]
 )
