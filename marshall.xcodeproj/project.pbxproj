@@ -9,14 +9,21 @@
 /* Begin PBXBuildFile section */
 		040A47352CE75B00004654B0 /* ListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 040A47342CE75B00004654B0 /* ListFeature */; };
 		044DD6072CE78A23001483EC /* ApiClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = 044DD6062CE78A23001483EC /* ApiClientLive */; };
+		049AA74E2CE8008900C9C2B3 /* DetailFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 049AA74D2CE8008900C9C2B3 /* DetailFeature */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		040A47322CE75A4F004654B0 /* modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = modules; sourceTree = "<group>"; };
+		049AA73F2CE8007100C9C2B3 /* DetailPreview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DetailPreview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B43B132CE759B9007B1B6E /* marshall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = marshall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		049AA7402CE8007100C9C2B3 /* DetailPreview */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DetailPreview;
+			sourceTree = "<group>";
+		};
 		04B43B152CE759B9007B1B6E /* marshall */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = marshall;
@@ -25,6 +32,14 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		049AA73C2CE8007100C9C2B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				049AA74E2CE8008900C9C2B3 /* DetailFeature in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04B43B102CE759B9007B1B6E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -49,6 +64,7 @@
 			children = (
 				040A47322CE75A4F004654B0 /* modules */,
 				04B43B152CE759B9007B1B6E /* marshall */,
+				049AA7402CE8007100C9C2B3 /* DetailPreview */,
 				040A47332CE75B00004654B0 /* Frameworks */,
 				04B43B142CE759B9007B1B6E /* Products */,
 			);
@@ -58,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				04B43B132CE759B9007B1B6E /* marshall.app */,
+				049AA73F2CE8007100C9C2B3 /* DetailPreview.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,6 +82,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		049AA73E2CE8007100C9C2B3 /* DetailPreview */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 049AA74C2CE8007300C9C2B3 /* Build configuration list for PBXNativeTarget "DetailPreview" */;
+			buildPhases = (
+				049AA73B2CE8007100C9C2B3 /* Sources */,
+				049AA73C2CE8007100C9C2B3 /* Frameworks */,
+				049AA73D2CE8007100C9C2B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				049AA7402CE8007100C9C2B3 /* DetailPreview */,
+			);
+			name = DetailPreview;
+			packageProductDependencies = (
+				049AA74D2CE8008900C9C2B3 /* DetailFeature */,
+			);
+			productName = DetailPreview;
+			productReference = 049AA73F2CE8007100C9C2B3 /* DetailPreview.app */;
+			productType = "com.apple.product-type.application";
+		};
 		04B43B122CE759B9007B1B6E /* marshall */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04B43B372CE759BB007B1B6E /* Build configuration list for PBXNativeTarget "marshall" */;
@@ -99,6 +139,9 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					049AA73E2CE8007100C9C2B3 = {
+						CreatedOnToolsVersion = 16.1;
+					};
 					04B43B122CE759B9007B1B6E = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -119,11 +162,19 @@
 			projectRoot = "";
 			targets = (
 				04B43B122CE759B9007B1B6E /* marshall */,
+				049AA73E2CE8007100C9C2B3 /* DetailPreview */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		049AA73D2CE8007100C9C2B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04B43B112CE759B9007B1B6E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,6 +185,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		049AA73B2CE8007100C9C2B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04B43B0F2CE759B9007B1B6E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -144,6 +202,62 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		049AA74A2CE8007300C9C2B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SZ6SDPY725;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "green-black.DetailPreview";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		049AA74B2CE8007300C9C2B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SZ6SDPY725;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "green-black.DetailPreview";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		04B43B352CE759BB007B1B6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -324,6 +438,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		049AA74C2CE8007300C9C2B3 /* Build configuration list for PBXNativeTarget "DetailPreview" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				049AA74A2CE8007300C9C2B3 /* Debug */,
+				049AA74B2CE8007300C9C2B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		04B43B0E2CE759B9007B1B6E /* Build configuration list for PBXProject "marshall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -352,6 +475,10 @@
 		044DD6062CE78A23001483EC /* ApiClientLive */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ApiClientLive;
+		};
+		049AA74D2CE8008900C9C2B3 /* DetailFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DetailFeature;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
