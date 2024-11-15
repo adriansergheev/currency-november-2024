@@ -11,14 +11,14 @@ public final class StatusModel: Identifiable {
   var isFetching: Bool = false
 
   @ObservationIgnored
-  @Dependency(\.apiClient) var apiClient
+  @Dependency(\.apiClient.status) var apiClient
   @ObservationIgnored
   @Dependency(\.continuousClock) var clock
 
   public init() {}
 
   func task() async {
-    for await _ in clock.timer(interval: .seconds(3)) {
+    for await _ in clock.timer(interval: .seconds(1)) {
       await fetchStatus()
     }
   }
@@ -27,7 +27,7 @@ public final class StatusModel: Identifiable {
     defer { self.isFetching = false }
     self.isFetching = true
     do {
-      self.status = try await apiClient.status(.fetch)
+      self.status = try await apiClient(.fetch)
     } catch {
       self.status = .init(message: error.localizedDescription)
     }

@@ -2,6 +2,26 @@ import Foundation
 import ApiClient
 import Dependencies
 
+extension ApiClient: DependencyKey {
+  public static var liveValue: ApiClient {
+    Self(
+      apiRequest: { apiEndpoint in try await Self.apiRequest(apiEndpoint: apiEndpoint)},
+      status: { endpoint in
+        guard let request = Self.makeRequest(for: endpoint)
+        else { throw URLError(.badURL) }
+        let (data, _) = try await apiRequest(request)
+        return try apiDecode(data: data, as: WazirxStatusEndpoint.Response.self)
+      },
+      currency: { endpoint in
+        guard let request = Self.makeRequest(for: endpoint)
+        else { throw URLError(.badURL) }
+        let (data, _) = try await apiRequest(request)
+        return try apiDecode(data: data, as: WazirxCurrencyEndpoint.Response.self)
+      }
+    )
+  }
+}
+
 public let jsonDecoder = JSONDecoder()
 public let jsonEncoder = JSONEncoder()
 
@@ -34,8 +54,8 @@ extension ApiClient {
   static func makeRequest(
     for apiEndpoint: any APIEndpoint
   ) -> URLRequest? {
-    guard var request = request(for: apiEndpoint) else { return nil }
-    addHeaders(to: &request)
+    guard let request = request(for: apiEndpoint) else { return nil }
+    //    addHeaders(to: &request)
     return request
   }
 
@@ -62,9 +82,10 @@ extension ApiClient {
     return request
   }
 
-  private static func addHeaders(to request: inout URLRequest) {
-    //
-  }
+  // TODO: - add headers if needed
+  //  private static func addHeaders(to request: inout URLRequest) {
+  //  }
+
   func apiRequest<T: Decodable>(
     _ apiEndpoint: any APIEndpoint,
     as: T.Type
@@ -82,18 +103,3 @@ extension ApiClient {
   }
 }
 
-
-extension ApiClient: DependencyKey {
-  public static var liveValue: ApiClient {
-    Self(
-      apiRequest: { apiEndpoint in try await Self.apiRequest(apiEndpoint: apiEndpoint)},
-      status: { request in
-        guard let request = Self.makeRequest(for: WazirxStatusEndpoint.fetch) else {
-          throw URLError(.badURL)
-        }
-        let (data, _) = try await apiRequest(request)
-        return try apiDecode(data: data, as: WazirxStatusEndpoint.Response.self)
-      }
-    )
-  }
-}
