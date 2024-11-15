@@ -1,11 +1,19 @@
 import SwiftUI
+import Dependencies
+import ApiClientLive
 import ListFeature
 
 @main
 struct marshallApp: App {
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      withDependencies {
+        $0.apiClient = .liveValue
+      } operation: {
+        NavigationStack {
+          ListView(model: .init())
+        }
+      }
     }
   }
 }

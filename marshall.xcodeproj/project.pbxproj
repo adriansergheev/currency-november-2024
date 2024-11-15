@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040A47352CE75B00004654B0 /* ListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 040A47342CE75B00004654B0 /* ListFeature */; };
+		044DD6072CE78A23001483EC /* ApiClientLive in Frameworks */ = {isa = PBXBuildFile; productRef = 044DD6062CE78A23001483EC /* ApiClientLive */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044DD6072CE78A23001483EC /* ApiClientLive in Frameworks */,
 				040A47352CE75B00004654B0 /* ListFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +83,7 @@
 			name = marshall;
 			packageProductDependencies = (
 				040A47342CE75B00004654B0 /* ListFeature */,
+				044DD6062CE78A23001483EC /* ApiClientLive */,
 			);
 			productName = marshall;
 			productReference = 04B43B132CE759B9007B1B6E /* marshall.app */;
@@ -345,6 +348,10 @@
 		040A47342CE75B00004654B0 /* ListFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ListFeature;
+		};
+		044DD6062CE78A23001483EC /* ApiClientLive */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ApiClientLive;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
