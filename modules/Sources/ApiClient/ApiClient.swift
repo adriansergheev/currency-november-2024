@@ -35,7 +35,7 @@ extension ApiClient: TestDependencyKey {
   public static var testValue: ApiClient {
     .init(
       apiRequest: { _ in (Data(), .init()) },
-      status: { _ in .init(message: "System is running in Test Mode", status: .normal) },
+      status: { _ in .init(message: "Test Mode", status: .normal) },
       currency: { _ in
         let btc = CryptoCurrency(
           symbol: "btcinr",
