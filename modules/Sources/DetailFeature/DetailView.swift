@@ -94,7 +94,7 @@ public struct DetailView: View {
           .fill(Color(.systemGray6))
       )
 
-      Text("📅 Updated on \(model.cryptoCurrency.at.formatted(date: .abbreviated, time: .shortened))")
+      Text("📅 Updated on \(model.cryptoCurrency.date.formatted(date: .abbreviated, time: .shortened))")
         .font(.footnote)
         .foregroundColor(.gray)
         .padding(.top)
@@ -117,7 +117,7 @@ public struct DetailView: View {
         volume: 0.0,
         bidPrice: 0.0,
         askPrice: 0.0,
-        at: Date(timeIntervalSince1970: 1727329628)
+        date: Date(timeIntervalSince1970: 1727329628)
       ),
       currency: .inr
     )

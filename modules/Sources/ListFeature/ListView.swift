@@ -31,26 +31,6 @@ public class ListModel {
     self.destination = destination
   }
 
-  // fetching the currencies concurrently, though there's an api limit
-
-  //    func task() async {
-  //      self.cryptoCurrencies = []
-  //      do {
-  //        self.currencies = try await withThrowingTaskGroup(of: CryptoCurrency.self) { taskGroup in
-  //          var cryptoCurrencies = [CryptoCurrency]()
-  //          for currency in Symbol.allCases {
-  //            taskGroup.addTask {
-  //              return try await self.apiClient(.fetch(currency))
-  //            }
-  //          }
-  //          for try await currency in taskGroup {
-  //            cryptoCurrencies.append(currency)
-  //          }
-  //          return currencies
-  //        }
-  //      } catch {}
-  //    }
-
   func task() async {
     await fetchCurrencies()
   }

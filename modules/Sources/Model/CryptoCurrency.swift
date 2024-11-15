@@ -13,9 +13,9 @@ public struct CryptoCurrency: Decodable, Hashable, Identifiable, Sendable {
   public let volume: Double
   public let bidPrice: Double
   public let askPrice: Double
-  public let at: Date
+  public let date: Date
 
-  enum CodingKeys: CodingKey {
+  enum CodingKeys: String, CodingKey {
     case symbol
     case baseAsset
     case quoteAsset
@@ -26,7 +26,7 @@ public struct CryptoCurrency: Decodable, Hashable, Identifiable, Sendable {
     case volume
     case bidPrice
     case askPrice
-    case at
+    case date = "at"
   }
 
   public init(from decoder: any Decoder) throws {
@@ -53,7 +53,8 @@ public struct CryptoCurrency: Decodable, Hashable, Identifiable, Sendable {
     self.volume = try decodeDouble(try container.decode(String.self, forKey: .volume))
     self.bidPrice = try decodeDouble(try container.decode(String.self, forKey: .bidPrice))
     self.askPrice = try decodeDouble(try container.decode(String.self, forKey: .askPrice))
-    self.at = try container.decode(Date.self, forKey: .at)
+    let timeInterval = try container.decode(Double.self, forKey: .date) / 1000.0
+    self.date =  Date(timeIntervalSince1970: timeInterval)
   }
 
   public init(
@@ -67,7 +68,7 @@ public struct CryptoCurrency: Decodable, Hashable, Identifiable, Sendable {
     volume: Double,
     bidPrice: Double,
     askPrice: Double,
-    at: Date
+    date: Date
   ) {
     self.symbol = symbol
     self.baseAsset = baseAsset
@@ -79,6 +80,6 @@ public struct CryptoCurrency: Decodable, Hashable, Identifiable, Sendable {
     self.volume = volume
     self.bidPrice = bidPrice
     self.askPrice = askPrice
-    self.at = at
+    self.date = date
   }
 }

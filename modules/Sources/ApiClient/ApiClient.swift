@@ -48,7 +48,7 @@ extension ApiClient: TestDependencyKey {
           volume: 0.0,
           bidPrice: 0.0,
           askPrice: 0.0,
-          at: Date(timeIntervalSince1970: 1727329628)
+          date: Date(timeIntervalSince1970: 1727329628)
         )
         return btc
       }
