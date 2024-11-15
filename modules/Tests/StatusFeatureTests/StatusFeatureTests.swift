@@ -6,7 +6,6 @@ import ApiClient
 @MainActor
 @Suite
 struct StatusTests {
-
   @Test func timer() async throws {
     let clock = TestClock()
     var apiClient = ApiClient.testValue
@@ -38,5 +37,4 @@ struct StatusTests {
     #expect(model.status != nil)
     task.cancel()
   }
-
 }

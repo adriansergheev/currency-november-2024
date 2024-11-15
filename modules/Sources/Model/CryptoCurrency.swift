@@ -1,7 +1,7 @@
 import Foundation
 
 public struct CryptoCurrency: Decodable, Hashable, Identifiable, Sendable {
-  public var id: String { symbol }
+  public var id: String { self.symbol }
 
   public let symbol: String
   public let baseAsset: String
@@ -81,5 +81,4 @@ public struct CryptoCurrency: Decodable, Hashable, Identifiable, Sendable {
     self.askPrice = askPrice
     self.at = at
   }
-
 }

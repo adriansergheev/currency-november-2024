@@ -9,6 +9,7 @@ let package = Package(
   products: [
     .library(name: "ApiClient", targets: ["ApiClient"]),
     .library(name: "ApiClientLive", targets: ["ApiClientLive"]),
+    .library(name: "DetailFeature", targets: ["DetailFeature"]),
     .library(name: "ListFeature", targets: ["ListFeature"]),
     .library(name: "Model", targets: ["Model"]),
     .library(name: "StatusFeature", targets: ["StatusFeature"]),
@@ -16,8 +17,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/pointfreeco/swift-navigation", from: "2.2.2"),
-    .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.5.2"),
-    .package(url: "https://github.com/pointfreeco/swift-identified-collections", from: "1.1.0")
+    .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.5.2")
   ],
   targets: [
     .target(
@@ -36,14 +36,21 @@ let package = Package(
       ]
     ),
     .target(
+      name: "DetailFeature",
+      dependencies: [
+        "Model",
+        "Styleguide"
+      ]
+    ),
+    .target(
       name: "ListFeature",
       dependencies: [
         "ApiClient",
         "Styleguide",
         "StatusFeature",
+        "DetailFeature",
         .product(name: "Dependencies", package: "swift-dependencies"),
         .product(name: "SwiftUINavigation", package: "swift-navigation")
-        //        .product(name: "IdentifiedCollections", package: "swift-identified-collections")
       ]
     ),
     .target(

@@ -5,6 +5,7 @@ import SwiftUINavigation
 import Dependencies
 import Model
 import ApiClient
+import DetailFeature
 
 @MainActor
 @Observable
@@ -13,18 +14,13 @@ public class ListModel {
   @dynamicMemberLookup
   public enum Destination {
     case status(StatusModel)
+    case detail(DetailModel)
   }
 
   var destination: Destination?
-  var currencies = [CryptoCurrency]()
-  var error: Error?
-
-  enum Currency: String, CaseIterable, Identifiable {
-    var id: String { rawValue }
-    case inr, usd
-  }
-
   var currency: Currency = .usd
+  var cryptoCurrencies = [CryptoCurrency]()
+  var error: Error?
 
   @ObservationIgnored
   @Dependency(\.apiClient.currency) var apiClient
@@ -37,21 +33,18 @@ public class ListModel {
 
   // fetching the currencies concurrently results in:
 
-  // Status: 429
-  // Response: {"message":"Too many api request","code":2136}
-
   //    func task() async {
-  //      self.currencies = []
+  //      self.cryptoCurrencies = []
   //      do {
   //        self.currencies = try await withThrowingTaskGroup(of: CryptoCurrency.self) { taskGroup in
-  //          var currencies = [CryptoCurrency]()
+  //          var cryptoCurrencies = [CryptoCurrency]()
   //          for currency in Symbol.allCases {
   //            taskGroup.addTask {
   //              return try await self.apiClient(.fetch(currency))
   //            }
   //          }
   //          for try await currency in taskGroup {
-  //            currencies.append(currency)
+  //            cryptoCurrencies.append(currency)
   //          }
   //          return currencies
   //        }
@@ -64,7 +57,7 @@ public class ListModel {
 
   func fetchCurrencies() async {
     self.error = error
-    self.currencies = []
+    self.cryptoCurrencies = []
 
     var symbols: [Symbol]
     switch self.currency {
@@ -74,17 +67,15 @@ public class ListModel {
 
     do {
       for currencySymbol in symbols {
-        currencies.append(try await self.apiClient(.fetch(currencySymbol)))
+        cryptoCurrencies.append(try await self.apiClient(.fetch(currencySymbol)))
         // avoid api limit
+        // Status: 429
+        // Response: {"message":"Too many api request","code":2136}
         try await clock.sleep(for: .seconds(1))
       }
     } catch {
       self.error = error
     }
-  }
-
-  func currencyRowTapped(_ currency: CryptoCurrency) {
-    print("Tapped \(currency)")
   }
 
   func changeCurrencyMenuButtonTapped(_ currency: Currency) async {
@@ -97,6 +88,18 @@ public class ListModel {
   }
 
   func dismissStatusButtonTapped() {
+    destination = nil
+  }
+
+  func currencyRowTapped(_ cryptoCurrency: CryptoCurrency) {
+    self.destination = .detail(
+      .init(
+        cryptoCurrency: cryptoCurrency,
+        currency: self.currency
+      )
+    )
+  }
+  func dismissDetailButtonTapped() {
     destination = nil
   }
 }
@@ -118,7 +121,7 @@ public struct ListView: View {
         }
       } else {
         List {
-          ForEach(self.model.currencies) { currency in
+          ForEach(self.model.cryptoCurrencies) { currency in
             Button {
               self.model.currencyRowTapped(currency)
             } label: {
@@ -159,7 +162,7 @@ public struct ListView: View {
       }
       ToolbarItem(placement: .topBarLeading) {
         Menu {
-          ForEach(ListModel.Currency.allCases) { currency in
+          ForEach(Currency.allCases) { currency in
             Button(currency.rawValue.uppercased()) {
               Task { await self.model.changeCurrencyMenuButtonTapped(currency) }
             }
@@ -177,6 +180,18 @@ public struct ListView: View {
             ToolbarItem(placement: .cancellationAction) {
               Button("Dismiss") {
                 self.model.dismissStatusButtonTapped()
+              }
+            }
+          }
+      }
+    }
+    .sheet(item: $model.destination.detail) { model in
+      NavigationStack {
+        DetailView(model: model)
+          .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+              Button("Dismiss") {
+                self.model.dismissDetailButtonTapped()
               }
             }
           }
