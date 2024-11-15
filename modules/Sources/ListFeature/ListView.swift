@@ -31,7 +31,7 @@ public class ListModel {
     self.destination = destination
   }
 
-  // fetching the currencies concurrently results in:
+  // fetching the currencies concurrently, though there's an api limit
 
   //    func task() async {
   //      self.cryptoCurrencies = []
@@ -56,7 +56,7 @@ public class ListModel {
   }
 
   func fetchCurrencies() async {
-    self.error = error
+    self.error = nil
     self.cryptoCurrencies = []
 
     var symbols: [Symbol]

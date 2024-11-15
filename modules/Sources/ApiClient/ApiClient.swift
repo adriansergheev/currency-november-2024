@@ -4,7 +4,6 @@ import Model
 import DependenciesMacros
 
 // https://docs.wazirx.com/#public-rest-api-for-wazirx
-// https://api.wazirx.com/sapi/v1/tickers/24hr
 
 public enum HTTPMethod: String {
   case get = "GET"
