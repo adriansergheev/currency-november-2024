@@ -18,12 +18,13 @@ public class ListModel {
   }
 
   var destination: Destination?
+  var isLoading: Bool = false
   var currency: Currency = .usd
   var cryptoCurrencies = [CryptoCurrency]()
   var error: Error?
 
   @ObservationIgnored
-  @Dependency(\.apiClient.currency) var apiClient
+  @Dependency(\.apiClient) var apiClient
   @ObservationIgnored
   @Dependency(\.continuousClock) var clock
 
@@ -36,26 +37,63 @@ public class ListModel {
   }
 
   func fetchCurrencies() async {
-    self.error = nil
-    self.cryptoCurrencies = []
+    isLoading = true
+    defer { isLoading = false }
+    error = nil
+    cryptoCurrencies = []
 
     var symbols: [Symbol]
-    switch self.currency {
-    case .usd: symbols = [.btcusdt, .ethusdt, .ltcusdt]
+    switch currency {
+    case .usd, .sek: symbols = [.btcusdt, .ethusdt, .ltcusdt]
     case .inr: symbols = [.btcinr, .ltcinr, .dogeinr]
     }
 
-    do {
-      for currencySymbol in symbols {
-        cryptoCurrencies.append(try await self.apiClient(.fetch(currencySymbol)))
-        // avoid api limit
-        // Status: 429
-        // Response: {"message":"Too many api request","code":2136}
-        try await clock.sleep(for: .seconds(1))
+    func fetch() async -> [CryptoCurrency] {
+      var currencies = [CryptoCurrency]()
+      do {
+        for currencySymbol in symbols {
+          currencies.append(try await self.apiClient.currency(.fetch(currencySymbol)))
+          // avoid api limit
+          // Status: 429
+          // Response: {"message":"Too many api request","code":2136}
+          try await clock.sleep(for: .seconds(1))
+        }
+      } catch {
+        self.error = error
       }
-    } catch {
-      self.error = error
+      return currencies
     }
+
+    switch currency {
+    case .sek:
+      async let exchange = self.apiClient.exchange(.fetch)
+      async let currencies = fetch()
+
+      if let rate = try? await exchange.rates["SEK"] {
+        self.cryptoCurrencies = await currencies.map { currency in
+          CryptoCurrency(
+            symbol: currency.symbol,
+            baseAsset: currency.baseAsset,
+            quoteAsset: "USD",
+            openPrice: currency.openPrice * rate,
+            lowPrice: currency.lowPrice * rate,
+            highPrice: currency.highPrice * rate,
+            lastPrice: currency.lastPrice * rate,
+            volume: currency.volume,
+            bidPrice: currency.bidPrice * rate,
+            askPrice: currency.askPrice * rate,
+            date: currency.date
+          )
+        }
+      } else {
+        //TODO: Proper error
+        self.error = NSError() as Error
+      }
+
+    case .inr, .usd:
+      self.cryptoCurrencies = await fetch()
+    }
+
   }
 
   func changeCurrencyMenuButtonTapped(_ currency: Currency) async {
@@ -72,7 +110,7 @@ public class ListModel {
   }
 
   func currencyRowTapped(_ cryptoCurrency: CryptoCurrency) {
-    self.destination = .detail(
+    destination = .detail(
       .init(
         cryptoCurrency: cryptoCurrency,
         currency: self.currency
@@ -93,15 +131,17 @@ public struct ListView: View {
 
   public var body: some View {
     Group {
-      if let _ = self.model.error {
+      if let _ = model.error {
         Button {
-          Task { await self.model.fetchCurrencies() }
+          Task { await model.fetchCurrencies() }
         } label: {
           Text("Retry")
         }
+      } else if model.isLoading {
+        ProgressView()
       } else {
         List {
-          ForEach(self.model.cryptoCurrencies) { currency in
+          ForEach(model.cryptoCurrencies) { currency in
             Button {
               self.model.currencyRowTapped(currency)
             } label: {

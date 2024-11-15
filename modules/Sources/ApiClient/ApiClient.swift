@@ -22,6 +22,7 @@ public struct ApiClient: Sendable {
   public var apiRequest: @Sendable (any APIEndpoint) async throws -> (data: Data, response: URLResponse)
   public var status: @Sendable (WazirxStatusEndpoint) async throws -> SystemStatus
   public var currency: @Sendable (WazirxCurrencyEndpoint) async throws -> CryptoCurrency
+  public var exchange: @Sendable (ExchangeEndPoint) async throws -> Exchange
 }
 
 extension DependencyValues {
@@ -51,6 +52,9 @@ extension ApiClient: TestDependencyKey {
           date: Date(timeIntervalSince1970: 1727329628)
         )
         return btc
+      },
+      exchange: { _ in
+          .init(amount: 1, base: "USD", rates: ["USD": 1])
       }
     )
   }

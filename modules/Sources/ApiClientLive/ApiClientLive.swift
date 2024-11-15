@@ -17,6 +17,12 @@ extension ApiClient: DependencyKey {
         else { throw URLError(.badURL) }
         let (data, _) = try await apiRequest(request)
         return try apiDecode(data: data, as: WazirxCurrencyEndpoint.Response.self)
+      },
+      exchange: { endpoint in
+        guard let request = Self.makeRequest(for: endpoint, host: "api.frankfurter.app")
+        else { throw URLError(.badURL) }
+        let (data, _) = try await apiRequest(request)
+        return try apiDecode(data: data, as: ExchangeEndPoint.Response.self)
       }
     )
   }
@@ -52,17 +58,21 @@ extension ApiClient {
   }
 
   static func makeRequest(
-    for apiEndpoint: any APIEndpoint
+    for apiEndpoint: any APIEndpoint,
+    host: String? = "api.wazirx.com"
   ) -> URLRequest? {
-    guard let request = request(for: apiEndpoint) else { return nil }
+    guard let request = request(for: apiEndpoint, host: host) else { return nil }
     //    addHeaders(to: &request)
     return request
   }
 
-  private static func request(for apiEndpoint: any APIEndpoint) -> URLRequest? {
+  private static func request(
+    for apiEndpoint: any APIEndpoint,
+    host: String?
+  ) -> URLRequest? {
     var urlComponents = URLComponents()
     urlComponents.scheme = "https"
-    urlComponents.host = "api.wazirx.com"
+    urlComponents.host = host
     urlComponents.path = apiEndpoint.path
     urlComponents.queryItems = apiEndpoint.queryItems
 
