@@ -6,43 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		04B43B242CE759BA007B1B6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04B43B0B2CE759B9007B1B6E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04B43B122CE759B9007B1B6E;
-			remoteInfo = marshall;
-		};
-		04B43B2E2CE759BA007B1B6E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04B43B0B2CE759B9007B1B6E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04B43B122CE759B9007B1B6E;
-			remoteInfo = marshall;
-		};
-/* End PBXContainerItemProxy section */
+/* Begin PBXBuildFile section */
+		040A47352CE75B00004654B0 /* ListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 040A47342CE75B00004654B0 /* ListFeature */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040A47322CE75A4F004654B0 /* modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = modules; sourceTree = "<group>"; };
 		04B43B132CE759B9007B1B6E /* marshall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = marshall.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		04B43B232CE759BA007B1B6E /* marshallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = marshallTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		04B43B2D2CE759BA007B1B6E /* marshallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = marshallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		04B43B152CE759B9007B1B6E /* marshall */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = marshall;
-			sourceTree = "<group>";
-		};
-		04B43B262CE759BA007B1B6E /* marshallTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = marshallTests;
-			sourceTree = "<group>";
-		};
-		04B43B302CE759BB007B1B6E /* marshallUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = marshallUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -52,32 +28,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04B43B202CE759BA007B1B6E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04B43B2A2CE759BA007B1B6E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				040A47352CE75B00004654B0 /* ListFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040A47332CE75B00004654B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		04B43B0A2CE759B9007B1B6E = {
 			isa = PBXGroup;
 			children = (
+				040A47322CE75A4F004654B0 /* modules */,
 				04B43B152CE759B9007B1B6E /* marshall */,
-				04B43B262CE759BA007B1B6E /* marshallTests */,
-				04B43B302CE759BB007B1B6E /* marshallUITests */,
+				040A47332CE75B00004654B0 /* Frameworks */,
 				04B43B142CE759B9007B1B6E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,8 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				04B43B132CE759B9007B1B6E /* marshall.app */,
-				04B43B232CE759BA007B1B6E /* marshallTests.xctest */,
-				04B43B2D2CE759BA007B1B6E /* marshallUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,56 +80,11 @@
 			);
 			name = marshall;
 			packageProductDependencies = (
+				040A47342CE75B00004654B0 /* ListFeature */,
 			);
 			productName = marshall;
 			productReference = 04B43B132CE759B9007B1B6E /* marshall.app */;
 			productType = "com.apple.product-type.application";
-		};
-		04B43B222CE759BA007B1B6E /* marshallTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04B43B3A2CE759BB007B1B6E /* Build configuration list for PBXNativeTarget "marshallTests" */;
-			buildPhases = (
-				04B43B1F2CE759BA007B1B6E /* Sources */,
-				04B43B202CE759BA007B1B6E /* Frameworks */,
-				04B43B212CE759BA007B1B6E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04B43B252CE759BA007B1B6E /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				04B43B262CE759BA007B1B6E /* marshallTests */,
-			);
-			name = marshallTests;
-			packageProductDependencies = (
-			);
-			productName = marshallTests;
-			productReference = 04B43B232CE759BA007B1B6E /* marshallTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		04B43B2C2CE759BA007B1B6E /* marshallUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04B43B3D2CE759BB007B1B6E /* Build configuration list for PBXNativeTarget "marshallUITests" */;
-			buildPhases = (
-				04B43B292CE759BA007B1B6E /* Sources */,
-				04B43B2A2CE759BA007B1B6E /* Frameworks */,
-				04B43B2B2CE759BA007B1B6E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04B43B2F2CE759BA007B1B6E /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				04B43B302CE759BB007B1B6E /* marshallUITests */,
-			);
-			name = marshallUITests;
-			packageProductDependencies = (
-			);
-			productName = marshallUITests;
-			productReference = 04B43B2D2CE759BA007B1B6E /* marshallUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -175,14 +98,6 @@
 				TargetAttributes = {
 					04B43B122CE759B9007B1B6E = {
 						CreatedOnToolsVersion = 16.1;
-					};
-					04B43B222CE759BA007B1B6E = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = 04B43B122CE759B9007B1B6E;
-					};
-					04B43B2C2CE759BA007B1B6E = {
-						CreatedOnToolsVersion = 16.1;
-						TestTargetID = 04B43B122CE759B9007B1B6E;
 					};
 				};
 			};
@@ -201,28 +116,12 @@
 			projectRoot = "";
 			targets = (
 				04B43B122CE759B9007B1B6E /* marshall */,
-				04B43B222CE759BA007B1B6E /* marshallTests */,
-				04B43B2C2CE759BA007B1B6E /* marshallUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		04B43B112CE759B9007B1B6E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04B43B212CE759BA007B1B6E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04B43B2B2CE759BA007B1B6E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -239,34 +138,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		04B43B1F2CE759BA007B1B6E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04B43B292CE759BA007B1B6E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		04B43B252CE759BA007B1B6E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04B43B122CE759B9007B1B6E /* marshall */;
-			targetProxy = 04B43B242CE759BA007B1B6E /* PBXContainerItemProxy */;
-		};
-		04B43B2F2CE759BA007B1B6E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04B43B122CE759B9007B1B6E /* marshall */;
-			targetProxy = 04B43B2E2CE759BA007B1B6E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		04B43B352CE759BB007B1B6E /* Debug */ = {
@@ -446,78 +318,6 @@
 			};
 			name = Release;
 		};
-		04B43B3B2CE759BB007B1B6E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SZ6SDPY725;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "green-black.marshallTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/marshall.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/marshall";
-			};
-			name = Debug;
-		};
-		04B43B3C2CE759BB007B1B6E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SZ6SDPY725;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "green-black.marshallTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/marshall.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/marshall";
-			};
-			name = Release;
-		};
-		04B43B3E2CE759BB007B1B6E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SZ6SDPY725;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "green-black.marshallUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = marshall;
-			};
-			name = Debug;
-		};
-		04B43B3F2CE759BB007B1B6E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SZ6SDPY725;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "green-black.marshallUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = marshall;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -539,25 +339,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		04B43B3A2CE759BB007B1B6E /* Build configuration list for PBXNativeTarget "marshallTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04B43B3B2CE759BB007B1B6E /* Debug */,
-				04B43B3C2CE759BB007B1B6E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		04B43B3D2CE759BB007B1B6E /* Build configuration list for PBXNativeTarget "marshallUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04B43B3E2CE759BB007B1B6E /* Debug */,
-				04B43B3F2CE759BB007B1B6E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		040A47342CE75B00004654B0 /* ListFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ListFeature;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 04B43B0B2CE759B9007B1B6E /* Project object */;
 }
