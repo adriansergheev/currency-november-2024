@@ -22,7 +22,7 @@ The main UI flow starts with ListView showing a list of cryptocurrencies, with n
 
 ## Architecture
 ```
-modules/
+modules/Sources
 ├── ApiClient        # API interface
 ├── ApiClientLive    # API implementation
 ├── DetailFeature    # Detail view
@@ -30,4 +30,7 @@ modules/
 ├── Model            # Data models
 ├── StatusFeature    # System monitoring
 └── Styleguide       # UI 
+modules/Tests
+├── ListFeatureTests
+├── StatusFeatureTests
 ```
