@@ -20,7 +20,11 @@ struct ListFeatureTests {
 
   func success() async throws {
     var api = ApiClient.testValue
-    var clock = TestClock()
+    api.exchange = { _ in
+      Issue.record("exchange should not be called")
+      return .init(amount: 1, base: "", rates: [:])
+    }
+    let clock = TestClock()
     let model = withDependencies {
       $0.apiClient = api
       $0.continuousClock = clock
@@ -32,6 +36,24 @@ struct ListFeatureTests {
     await clock.advance(by: .seconds(1))
     #expect(model.error == nil)
     #expect(!model.cryptoCurrencies.isEmpty)
+  }
+
+  func successSEK() async throws {
+    let api = ApiClient.testValue
+    let clock = TestClock()
+    let model = withDependencies {
+      $0.apiClient = api
+      $0.continuousClock = clock
+    } operation: {
+      ListModel()
+    }
+
+    model.currency = .sek
+    await model.task()
+    await clock.advance(by: .seconds(1))
+    #expect(model.error == nil)
+    #expect(!model.cryptoCurrencies.isEmpty)
+    try #require(model.cryptoCurrencies.first?.quoteAsset == "USD")
   }
 
   func error() async throws {
